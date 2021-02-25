@@ -2,11 +2,6 @@
 
 <img src="img/opening.jpeg" width="500"> 
 
-## Estimation de la moyenne
-- Utilisation de l'ANN pour estimer la moyenne <img src="https://bit.ly/2Buw8nb" align="center" border="0" alt="\mu" width="15" height="15" /> d'échantillons selon une loi de Student
-- Training : 
-  - 50 séries temporelles 
-
 ## Exposant de Hurst
 
-- Implémentation du CNN via l'article de 
+- Implémentation d'un CNN via l'architecture de l'![article de H.Stone, QF (2020)](https://arxiv.org/pdf/1812.05315v3.pdf).
