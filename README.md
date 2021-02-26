@@ -16,7 +16,7 @@ Buts du projet :
   - Pour 10 valeurs de H ([0,1]), génération de 10 000 séries temporelles de mouvement browninen fractionnaire de longueur T = 100 (librairie *fBm*)
 - Test Set :
   - Pour 100 valeurs de H ([0.01,0.99]), génération de 1000 séries temporelles de longueur T = 100
-- Conclusion : le réseau dense ANN est meilleur que le CNN pour l'estimation de H < 0.4. Cela est suffisant pour sauvegarder le modèle ANN pour une utilisation ultérieure (recherche récente démontrant que le coefficient de Hurst pour les séries financières est aux alentours de 0.15).
+- Conclusion : le réseau dense ANN est meilleur que le CNN pour l'estimation de H < 0.4. Cela est suffisant pour sauvegarder le modèle ANN pour une utilisation ultérieure (recherche récente démontrant que le coefficient de Hurst pour les séries financières est aux alentours de 0.1 : [Volatility is rough, J.Gatheral, M.Rosenbaum](https://www.tandfonline.com/doi/full/10.1080/14697688.2017.1393551)).
 - Next step : comparer les résultats avec les estimateurs Wavelets via le package *liftLRD* de R (*rpy2* permet d'importer des fonctions R en Python)
 
 ## GANs : Génération de séries temporelles
