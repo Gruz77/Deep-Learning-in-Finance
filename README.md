@@ -22,7 +22,7 @@ Buts du projet :
 ## GANs : Génération de séries temporelles
 
 Les applications des GANs sont autant diverses qu'[impressionantes](https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/). 
-Ici nous nous intéressons à la génération de séries temporelles. Ce qui peut être extrèmement utile dans le cas de backtesting de stratégie, pour éviter l'overfitting. Cela permettrait d'accéder à un univers presque infini de possibilités, et ainsi d'avoir des stratégies dont la significativité pourrait être d'autant plus parlante. ("Train on fake, trade on real"). Une chose très importante pour vérifier que le GAN a bien générer des séries financières valides est d'en vérifier les faits stylisés (queues grasses, volatilité avec longue mémoire, ... [voir ici]())
+Ici nous nous intéressons à la génération de séries temporelles. Ce qui peut être extrèmement utile dans le cas de backtesting de stratégie, pour éviter l'overfitting. Cela permettrait d'accéder à un univers presque infini de possibilités, et ainsi d'avoir des stratégies dont la significativité pourrait être d'autant plus parlante. ("Train on fake, trade on real"). Une chose très importante pour vérifier que le GAN a bien générer des séries financières valides est d'en vérifier les faits stylisés (queues grasses, volatilité avec longue mémoire, ... [voir ici](https://github.com/Gruz77/Physics-of-markets#faits-stylis%C3%A9s))
 
 - On utilise les données journalières de l'indice S&P500 depuis 1928. Nous travaillons comme d'habitude sur les log-rendements.
 - On construit le GAN : 
@@ -39,6 +39,14 @@ Ici nous nous intéressons à la génération de séries temporelles. Ce qui peu
   - On créé notre matrice de bruit pour tromper le discriminateur (Noise', taille M'xD, avec M'=M ici)
   - On définit notre vecteur Yfake = (1,...,1) (taille M') prétendant que les échantillons de bruit ci-dessus sont de vraies séries temporelles
   - On entraine le GAN (donc Noise' en entrée du générateur -> sortie Xfake (taille M'xT) qui sera en entrée du discriminateur)
-  - Après avoir bouclé sur chaque batch, nous avons fait une epoch, et aussi surprenant que cela puisse paraitre, on cosidère que c'est suffisant ici.
+  - Après avoir bouclé sur chaque batch, nous avons fait une epoch, et aussi surprenant que cela puisse paraitre, on considère que c'est suffisant ici.
 
-- Conclusion : Pour 3 vecteurs d'entrée, les predictions du discriminateur sont de 0.5, mais on voit que les séries obtenues sont presques identiques. En fait, en testant avec un vecteur d'entrée (0,...,0) de taille D, la série en sortie est aussi exactement la même. Le générateur n'a donc appris que du biais. 
+- Conclusion/Tests : 
+  - Pour 3 vecteurs d'entrée, les predictions du discriminateur sont de 0.5, mais on voit que les séries obtenues sont presques identiques. 
+  - En fait, en testant avec un vecteur d'entrée (0,...,0) de taille D, la série en sortie est aussi exactement la même. 
+  - Le générateur n'a donc appris que du biais.
+  - Il est ainsi important de vérifier avec un vecteur d'entrée nul, et d'**avoir l'argument use_bias=False pour le générateur**.
+  - Après reconstruction du modèle sans le biais, les séries temporelles sont moins similaires et respectent plus les faits stylisés.
+
+- Next step :
+  - Rendre l'architecture du générateur et discriminateur bien plus robuste afin d'avoir des séries temporelles d'autant plus différentes.
