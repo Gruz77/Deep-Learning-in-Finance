@@ -49,7 +49,7 @@ Ici nous nous intéressons à la génération de séries temporelles. Ce qui peu
   - Après reconstruction du modèle sans le biais, les séries temporelles sont moins similaires et respectent plus les faits stylisés.
 
 - Next step :
-  - Rendre l'architecture du générateur et discriminateur bien plus robuste afin d'avoir des séries temporelles d'autant plus différentes.
+  - Rendre l'architecture du générateur et discriminateur bien plus robuste afin d'avoir des séries temporelles d'autant plus différentes l'une de l'autre.
 
 
 ## Futurs ajouts
