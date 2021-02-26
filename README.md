@@ -6,7 +6,7 @@
 
 L'exposant de Hurst est directement lié à notion de mouvement fractionnaire, c'est un indicateur de longue mémoire des séries temporelles. 
 - Pour 0 < H < 0.5, nous sommes dans une trend anti-persistente, le principe de mean-reverting, 
-- Pour H = 0.5, nous avons un mouvement brownien standars (processus de Wiener),
+- Pour H = 0.5, nous avons un mouvement brownien standard (processus de Wiener),
 - Pour 0.5 < H < 1, nous avons une trend persistente (autocorrélation positive à long-terme).
 
 Buts du projet :
