@@ -28,7 +28,7 @@ Ici nous nous intéressons à la génération de séries temporelles. Ce qui peu
 - On construit le GAN : 
   - Le générateur aura une entrée de dimension D = 10 et une sortie de dimension T = 200
   - Le discriminateur a une entrée de taille T (sortie du générateur) et une seule sortie d'activation sigmoïde : afin de discriminer (série financière ou non)
-  - Notre objet GAN aura donc en entrée de taille D correspondant à celle du générateur, et en sortie celle du discriminateur. Le but est que le discrimnateur ne sache plus différencier les vrais séries temporelles des fausses, et donc renvoie une probabilité de 0.5 une fois entrainé, pour chaque vecteur fourni en entrée.
+  - Notre objet GAN aura donc en entrée celle du générateur, et en sortie celle du discriminateur. Le but est que le discrimnateur ne sache plus différencier les vrais séries temporelles des fausses, et donc renvoie une probabilité de 0.5 une fois entrainé, pour chaque vecteur fourni en entrée.
 
 - Entrainement du GAN pour chaque batch (de taille 32 ici) :
   - On génère M sous-échantillons de taille T de nos log-rendements (Xreal, taille MxT)
