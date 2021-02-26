@@ -38,6 +38,7 @@ Ici nous nous intéressons à la génération de séries temporelles. Ce qui peu
   - On entraine le discriminateur
   - On créé notre matrice de bruit pour tromper le discriminateur (Noise', taille M'xD, avec M'=M ici)
   - On définit notre vecteur Yfake = (1,...,1) (taille M') prétendant que les échantillons de bruit ci-dessus sont de vraies séries temporelles
-  - On entraine le GAN (donc Noise' en entrée du générateur -> sortie Xfake (taille M'xT) qui sera en entrée du discriminateur
+  - On entraine le GAN (donc Noise' en entrée du générateur -> sortie Xfake (taille M'xT) qui sera en entrée du discriminateur)
+  - Après avoir bouclé sur chaque batch, nous avons fait une epoch, et aussi surprenant que cela puisse paraitre, on cosidère que c'est suffisant ici.
 
 - Conclusion : Pour 3 vecteurs d'entrée, les predictions du discriminateur sont de 0.5, mais on voit que les séries obtenues sont presques identiques. En fait, en testant avec un vecteur d'entrée (0,...,0) de taille D, la série en sortie est aussi exactement la même. Le générateur n'a donc appris que du biais. 
