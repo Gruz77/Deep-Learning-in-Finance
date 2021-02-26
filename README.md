@@ -55,5 +55,5 @@ Ici nous nous intéressons à la génération de séries temporelles. Ce qui peu
 ## Futurs ajouts
 - Prédiction de la volatilité (via LSTM) :
   - data : séries de volatilité réalisées de l'Oxford-Man Institute.
-  - comparer la prédiction de volatilité avec le modèle dde volatilité rugueuse, par Deep Learning, et avec les deux. 
+  - comparer la prédiction de volatilité avec le modèle de volatilité rugueuse, par Deep Learning, et avec les deux. 
 - Prediction de la direction des rendements (bit d'info : signe et/ou quantile et/ou z-score)
