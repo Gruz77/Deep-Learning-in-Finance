@@ -24,7 +24,7 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
 
 ## Modèle rough + Deep Learning 
   - Ici nous allons procéder de la même manière mais en ajoutant comme feature la prévision du modèle Rough 
-  - Puis on étudie une autre possibilitée : utiliser en seconde feature les résidus (différence de la log variance réalisée et de la log varaince prédite par le modèle rough) au LSTM et non la variance prédite
+  - Puis on étudie une autre possibilitée : utiliser en seconde feature les résidus (différence de la log variance réalisée et de la log variance prédite par le modèle rough) au LSTM et non la variance prédite
   - On note que dans ces deux cas les LSTMs n'ont pas autant de données d'entrainement : 
     - les 501 premières valeurs ne sont pas prédites via le modèle rough
     - les premières prédictions du LSTM commencent à partir de la 1380ème donnée dans tous les cas: 1280 taille de la fenêtre + 100 timesteps
