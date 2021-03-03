@@ -16,7 +16,7 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
   - 100 timesteps pour notre matrice de prédicteurs,
   - batch_size de 64 et chaque fenêtre d'entrainement représente T_in = 20*64 (1280) données.
   - On entraine le LSTM avec un validation_set de 20% sur les T_in données, avec 20 epochs,
-  - On prédit les 100 valeurs suivantes, avec un nouvel objet LSTM dont on définit les poids (avec set_weights) comme ceux du modèle tout juste entrainé (cela vient du fait que notre batch_size de prédiction (100) est différent de celui d'entrainement (64)
+  - On prédit les 100 valeurs suivantes, avec un nouvel objet LSTM dont on définit les poids (avec set_weights) comme ceux du modèle tout juste entrainé (cela vient du fait que notre batch_size de prédiction (100) est différent de celui d'entrainement (64))
   - Process :
     - La première itération d'entrainement sera sur les 1280 premières données, 
     - On prédit les 100 suivantes (1280-1380)
