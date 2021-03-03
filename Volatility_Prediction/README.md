@@ -24,10 +24,9 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
 
 ## Modèle rough + Deep Learning 
   - Ici nous allons procéder de la même manière mais en ajoutant comme feature la prévision du modèle Rough 
-  - Puis on étudie une autre possibilitée : utiliser en seconde feature les résidus (différence de la log variance réalisée et de la log variance prédite par le modèle rough) au LSTM et non la variance prédite
-  - On note que dans ces deux cas les LSTMs n'ont pas autant de données d'entrainement : 
-    - les 501 premières valeurs ne sont pas prédites via le modèle rough
-    - les premières prédictions du LSTM commencent à partir de la 1380ème donnée dans tous les cas: 1280 taille de la fenêtre + 100 timesteps
+  - Puis on étudie une autre possibilitée : utiliser en seconde feature les résidus (différence de la log variance réalisée et de la log variance prédite par le modèle rough)
+  - On note que dans ces deux cas les LSTMs ne sont pas entrainés sur le même nombre de données : 
+    - les 501 premières valeurs ne sont pas prédites via le modèle rough, et comme nous l'ajoutons en deuxième feature nous devont partir de la 501ème également pour la première feature
 
 ## Modèle rough + Deep Learning + Autres prédicteurs
   - Le roll des futures et l'expiration des options a souvent lieu le 3ème vendredi du mois, synonyme de fortes fluctuations/volatilité. Nous allons voir si rajouter le fait que le jour du timestep correspondant est un 3ème Vendredi du mois ou non améliore notre pouvoir prédictif, ou pas.
@@ -39,7 +38,7 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
     - Variance réalisée + variance prédite par modèle Rough : RMSE = 6.05404 | MAE = 182.96235
     - Variance réalisée + résidus : RMSE = 5.75661 | MAE = 173.50951
     - Variance réalisée + résidus + booléen du 3ème vendredi du mois : RMSE = 5.64279 | MAE = 162.91572 
-  - On vérifie donc bien qu'"aider" le modèle de Deep Learning avec un modèle est une meilleure approche.
+  - On vérifie donc bien qu'"aider" le Deep Learning avec un modèle est une meilleure approche.
 
 ## Next steps
   - Optimiser les hyperparamètres (avec un GridSearch par exemple)
