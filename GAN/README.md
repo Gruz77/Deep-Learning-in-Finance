@@ -1,7 +1,7 @@
 ## GANs : Génération de séries temporelles
 
 Les applications des GANs sont autant diverses qu'[impressionantes](https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/). 
-Ici nous nous intéressons à la génération de séries temporelles. Ce qui peut être extrèmement utile dans le cas de backtesting de stratégie, pour éviter l'overfitting. Cela permettrait d'accéder à un univers presque infini de possibilités, et ainsi d'avoir des stratégies dont la significativité pourrait être d'autant plus parlante. ("Train on fake, trade on real"). Une chose très importante pour vérifier que le GAN a bien généré des séries financières valides est d'en vérifier les faits stylisés (queues grasses, volatilité avec longue mémoire, ... [voir ici](https://github.com/Gruz77/Physics-of-markets#faits-stylis%C3%A9s))
+Ici nous nous intéressons à la génération de séries temporelles. Ce qui peut être extrèmement utile dans le cas de backtesting de stratégie, pour éviter l'overfitting. Cela permettrait d'accéder à un univers presque infini de possibilités, et ainsi d'avoir des stratégies dont la significativité pourrait être d'autant plus parlante. ("Train on fake, trade on real"). Une chose très importante pour vérifier que le GAN a bien généré des séries financières valides est d'en vérifier les faits stylisés (queues grasses, volatilité avec longue mémoire, ... [voir ici](https://github.com/Gruz77/Physics-of-Markets/tree/main/Stylized_Facts))
 
 - On utilise les données journalières de l'indice S&P500 depuis 1928. Nous travaillons comme d'habitude sur les log-rendements.
 - On construit le GAN : 
