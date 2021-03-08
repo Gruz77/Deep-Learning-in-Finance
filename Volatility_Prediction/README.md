@@ -35,7 +35,17 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
   - Le modèle de volatilité rough est un excellent modèle et nous pouvons voir même graphiquement que celui-ci a un pouvoir prédictif dépassant de loin ceux des réseaux LSTMs.
   - Au niveau des LSTMs : 
     Voici une capture d'écran représentant la comparaison : 
+    <img src="img/comparaison_pred_vol.png" width="1000"> 
     
+  - Sans surprise le modèle de volatilité rough est le meilleur modèle d'un poin de vie prédiction. 
+
+  - Du point de vue Deep Learning, on peut voir que : 
+    - le LSTM + modèle rough est meilleur que le LSTM seul
+    - faire apprendre des résidus au lieu de la variance prédite ne diminue pas le taux d'erreur
+    - rajouter le boléen de troisieme vendredi du mois ne rajoute pas de pouvoir prédictif.
+
+  - Nous vérifions donc qu'utiliser le deep learning en l'aidant de modèles est une des meilleures approches.
+
 
 ## Next steps
   - Optimiser les hyperparamètres (avec un GridSearch par exemple)
