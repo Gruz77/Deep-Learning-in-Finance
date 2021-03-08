@@ -37,7 +37,7 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
     Voici une capture d'écran représentant la comparaison : 
     <img src="img/comparaison_pred_vol.png" width="1000"> 
     
-  - Sans surprise le modèle de volatilité rough est le meilleur modèle d'un poin de vie prédiction. 
+  - Sans surprise le modèle de volatilité rough est le meilleur modèle d'un poin de vue prédiction. 
 
   - Du point de vue Deep Learning, on peut voir que : 
     - le LSTM + modèle rough est meilleur que le LSTM seul
