@@ -34,11 +34,8 @@ Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Inst
 ## Comparaison
   - Le modèle de volatilité rough est un excellent modèle et nous pouvons voir même graphiquement que celui-ci a un pouvoir prédictif dépassant de loin ceux des réseaux LSTMs.
   - Au niveau des LSTMs : 
-    - Variance réalisée seule : RMSE = 6.5578 | MAE = 212.90069
-    - Variance réalisée + variance prédite par modèle Rough : RMSE = 6.05404 | MAE = 182.96235
-    - Variance réalisée + résidus : RMSE = 5.75661 | MAE = 173.50951
-    - Variance réalisée + résidus + booléen du 3ème vendredi du mois : RMSE = 5.64279 | MAE = 162.91572 
-  - On vérifie donc bien qu'"aider" le Deep Learning avec un modèle est une meilleure approche.
+    Voici une capture d'écran représentant la comparaison : 
+    
 
 ## Next steps
   - Optimiser les hyperparamètres (avec un GridSearch par exemple)
