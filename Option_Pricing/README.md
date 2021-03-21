@@ -40,22 +40,22 @@
 
 ## Différentes features
 
-### DNN1 - k + T_Scaled
+### DNN1 : k + T_Scaled
 - On utilise en premier lieur seulement le strike réechelonné k et le nombre de jours jusqu'a expiration
 - MAE = 8.0e-5 | RMSE = 5.89e-3
 - Nous voyons qu'avec seulement le strike et les jours jusqu'a expiration, le réseau prédit déja très bien 
 
-### DNN2 - k + T_scaled + spread bd/ask relatif
+### DNN2 : k + T_scaled + spread bd/ask relatif
 - On ajoute le spread bid/ask relatif et on essaie de voir si cela améliore notre prédiction
 - MAE = 6.6e-5 | RMSE = 5.49e-3
 - Nous voyons une légère amélioration, mais pas non plus exceptionnelle.
   
-### DNN3 - k + T_scaled + spread bid/ask relatif + vol (49 semaines)
+### DNN3 : k + T_scaled + spread bid/ask relatif + vol (49 semaines)
 - On ajoute la vol et on essaie de voir si cela améliore notre prédiction
 - MAE = 2.3e-5 | RMSE = 3.49e-3
 - Cette fois l'amélioration est presque d'un facteur 2 !
 
-### DNN4 - k + T_scaled + spread bid/ask relatif + vol (49 semaines) + Prix par Black&Scholes
+### DNN4 : k + T_scaled + spread bid/ask relatif + vol (49 semaines) + Prix par Black&Scholes
 - On ajoute le prix prédit par Black&Scholes afin de voir si cela améliore la prédiction, et de valider le fait qu'aider le Deep Learning avec des modèles classiques financiers est une bonne initiative.
 - MAE = 1.9e-5 | RMSE = 2.83e-3
 - La précision est encore améliorée et nous vérifions l'hypothèse d'aider le Deep Learning via des modèles classiques. 
