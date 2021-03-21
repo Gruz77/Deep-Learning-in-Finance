@@ -35,7 +35,7 @@
 
 - Architecture:
   - 3 hidden layers de 150, 100, 50 neurones chacunes avec fonction d'activation relu pour chaque
-  - 1 couche de sortie avec activation relu 
+  - 1 couche de sortie avec activation relu (car le prix de l'option est toujours positif)
   - optimiseur adam et loss MSE.
 
 ## Différentes features
