@@ -1,5 +1,3 @@
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](http://colab.research.google.com/drive/1tlCBF75FpX4dcEFykHh-eGpQK-u0xoI8)
-
 # LSTMs : Prédiction de la volatilité 
 
 Le but ici est d'utiliser un LSTM afin de prédire la volatilité avec différents prédicteurs, et de les comparer en terme de RMSE et MAE.
