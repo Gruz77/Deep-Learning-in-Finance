@@ -1,52 +1,53 @@
-# LSTMs : Prédiction de la volatilité 
+<h1 align='center'> LSTMs : Volatility prediction </h1>
 
-Le but ici est d'utiliser un LSTM afin de prédire la volatilité avec différents prédicteurs, et de les comparer en terme de RMSE et MAE.
-Nous allons voir si les modèles de Deep Learning peuvent être "aidés" par des modèles financiers actuels. 
+[<h1 align='center'>![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gruz77/Deep-Learning-in-Finance/blob/main/Volatility_Prediction/Volatility_prediction.ipynb)</h1>
 
-Data : fichier .parquet de séries de variances réalisées de l'Oxford-Man Institute pour différents actifs, de 2000 à 2021.
+The aim here is to use an LSTM to predict volatility with different predictors, and to compare them in terms of RMSE and MAE.
+We will see if Deep Learning models can be "helped" by current financial models. 
 
-- On note que dans tout le projet nous estimons la variance, puis nous passons à la volatilité annualisée pour effectuer les comparaisons.
+Data: .parquet file of variance series from the Oxford-Man Institute for different assets, from 2000 to 2021.
 
-## Modèle rough
-- Nous allons reprendre le code du lien suivant sur la Rough Volatility : [rough_volatility_with_python](https://tpq.io/p/rough_volatility_with_python.html)
+- Note that throughout the project we estimate the variance, then switch to annualised volatility to make comparisons.
+
+## Rough model
+- We will take the code from the following link on Rough Volatility: [rough_volatility_with_python](https://tpq.io/p/rough_volatility_with_python.html)
 
 ## Deep Learning
-  - L'entrainement et la prédiction sont faits sur fenêtre glissantes
-  - On utilise un LSTM avec une couche de 100 neurones et en stateful (garde l'état caché pour chaque batch) avec seulement la variance réalisée en input :
-  - 100 timesteps pour notre matrice de prédicteurs,
-  - batch_size de 64 et chaque fenêtre d'entrainement représente T_in = 20*64 (1280) données.
-  - On entraine le LSTM avec un validation_set de 20% sur les T_in données, avec 20 epochs,
-  - On prédit les 100 valeurs suivantes, avec un nouvel objet LSTM dont on définit les poids (avec set_weights) comme ceux du modèle tout juste entrainé (cela vient du fait que notre batch_size de prédiction (100) est différent de celui d'entrainement (64))
-  - Process :
-    - La première itération d'entrainement sera sur les 1280 premières données, 
-    - On prédit les 100 suivantes (1280-1380)
-    - On entraine de nouveau les données 100-1380, puis on prédit les données 1380-1480, etc...
+  - Training and prediction are done on sliding windows
+  - We use an LSTM with a layer of 100 neurons and in stateful (keeps the state hidden for each batch) with only the variance realized in input:
+  - 100 timesteps for our predictor matrix,
+  - batch_size of 64 and each training window represents T_in = 20*64 (1280) data.
+  - We train the LSTM with a validation_set of 20% on the T_in data, with 20 epochs,
+  - We predict the next 100 values, with a new LSTM object whose weights are defined (with set_weights) as those of the just trained model (this comes from the fact that our prediction batch_size (100) is different from the training one (64))
+  - Process:
+    - The first training iteration will be on the first 1280 data, 
+    - We predict the next 100 (1280-1380)
+    - We train again the data 100-1380, then we predict the data 1380-1480, etc...
 
-## Modèle rough + Deep Learning 
-  - Ici nous allons procéder de la même manière mais en ajoutant comme feature la prévision du modèle Rough 
-  - Puis on étudie une autre possibilitée : utiliser en seconde feature les résidus (différence de la log variance réalisée et de la log variance prédite par le modèle rough)
-  - On note que dans ces deux cas les LSTMs ne sont pas entrainés sur le même nombre de données : 
-    - les 501 premières valeurs ne sont pas prédites via le modèle rough, et comme nous l'ajoutons en deuxième feature nous devont partir de la 501ème également pour la première feature
+## Rough model + Deep Learning 
+  - Here we will proceed in the same way but add as a feature the prediction of the Rough model 
+  - Then we study another possibility: to use as a second feature the residuals (difference between the realized log variance and the log variance predicted by the rough model)
+  - We note that in these two cases the LSTMs are not trained on the same number of data: 
+    - the first 501 values are not predicted via the rough model, and as we add it as a second feature we have to start from the 501st also for the first feature
 
-## Modèle rough + Deep Learning + Autres prédicteurs
-  - Le roll des futures et l'expiration des options a souvent lieu le 3ème vendredi du mois, synonyme de fortes fluctuations/volatilité. Nous allons voir si rajouter le fait que le jour du timestep correspondant est un 3ème Vendredi du mois ou non améliore notre pouvoir prédictif, ou pas.
+## Rough model + Deep Learning + Other predictors
+  - The roll of futures and the expiration of options often takes place on the 3rd Friday of the month, synonymous with strong fluctuations/volatility. We will see if adding the fact that the corresponding timestep day is a 3rd Friday of the month or not improves our predictive power, or not.
 
-## Comparaison
-  - Le modèle de volatilité rough est un excellent modèle et nous pouvons voir même graphiquement que celui-ci a un pouvoir prédictif dépassant de loin ceux des réseaux LSTMs.
-  - Au niveau des LSTMs : 
-    Voici une capture d'écran représentant la comparaison : 
-    <img src="img/comparaison_pred_vol.png" width="1000"> 
+## Comparison
+  - The rough volatility model is an excellent model and we can see even graphically that it has a predictive power far exceeding those of the LSTMs networks.
+  - At the LSTM level: 
+    Here is a screenshot representing the comparison: 
+    <img src="img/comparison_pred_vol.png" width="1000"> 
     
-  - Sans surprise le modèle de volatilité rough est le meilleur modèle d'un poin de vue prédiction. 
+  - Unsurprisingly the rough volatility model is the best model from a prediction point of view. 
 
-  - Du point de vue Deep Learning, on peut voir que : 
-    - le LSTM + modèle rough est meilleur que le LSTM seul
-    - faire apprendre des résidus au lieu de la variance prédite ne diminue pas le taux d'erreur
-    - rajouter le boléen de troisieme vendredi du mois ne rajoute pas de pouvoir prédictif.
+  - From a Deep Learning point of view, we can see that : 
+    - LSTM + rough model is better than LSTM alone
+    - learning residuals instead of the predicted variance does not decrease the error rate
+    - adding the third Friday of the month boolean does not add any predictive power.
 
-  - Nous vérifions donc qu'utiliser le deep learning en l'aidant de modèles est une des meilleures approches.
+  - We therefore verify that using deep learning with the help of models is one of the best approaches.
 
 
 ## Next steps
-  - Optimiser les hyperparamètres (avec un GridSearch par exemple)
-  
+  - Optimise the hyperparameters (with a GridSearch for example)
