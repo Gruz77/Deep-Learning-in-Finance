@@ -1,33 +1,35 @@
-# GANs : Génération de séries temporelles
+<h1 align='center'> GANs: Time Series Generation </h1>
 
-Les applications des GANs sont autant diverses qu'[impressionantes](https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/). 
-Ici nous nous intéressons à la génération de séries temporelles. Ce qui peut être extrèmement utile dans le cas de backtesting de stratégie, pour éviter l'overfitting. Cela permettrait d'accéder à un univers presque infini de possibilités, et ainsi d'avoir des stratégies dont la significativité pourrait être d'autant plus parlante. ("Train on fake, trade on real"). Une chose très importante pour vérifier que le GAN a bien généré des séries financières valides est d'en vérifier les faits stylisés (queues grasses, volatilité avec longue mémoire, ... [voir ici](https://github.com/Gruz77/Physics-of-Markets/tree/main/Stylized_Facts))
+[<h1 align='center'>![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gruz77/Deep-Learning-in-Finance/blob/main/GAN/GAN.ipynb)</h1>
 
-- On utilise les données journalières de l'indice S&P500 depuis 1928. Nous travaillons comme d'habitude sur les log-rendements.
+The applications of GANs are as diverse as they are [impressive](https://machinelearningmastery.com/impressive-applications-of-generative-adversarial-networks/). 
+Here we are interested in the generation of time series. This can be extremely useful in the case of strategy backtesting, to avoid overfitting. This would allow access to an almost infinite universe of possibilities, and thus to have strategies whose significance could be all the more telling. ("Train on fake, trade on real"). One very important thing to verify that GAN has generated valid financial series is to check the stylised facts (fat tails, volatility with long memory, ... [see here](https://github.com/Gruz77/Physics-of-Markets/tree/main/Stylized_Facts))
 
-## Construction et entraînement
-- On construit le GAN : 
-  - Le générateur aura une entrée de dimension D = 10 et une sortie de dimension T = 200
-  - Le discriminateur a une entrée de taille T (sortie du générateur) et une seule sortie d'activation sigmoïde : afin de discriminer (série financière ou non)
-  - Notre objet GAN aura donc en entrée celle du générateur, et en sortie celle du discriminateur. Le but est que le discrimnateur ne sache plus différencier les vrais séries temporelles des fausses, et donc renvoie une probabilité de 0.5 une fois entrainé, pour chaque vecteur fourni en entrée.
+- We use the daily data of the S&P500 index since 1928. We work as usual on log returns.
 
-- Entrainement du GAN pour chaque batch (de taille 32 ici) :
-  - On génère M sous-échantillons de taille T de nos log-rendements (Xreal, taille MxT)
-  - On génère M échantillons de vecteurs de bruit de dimension D (Noise, taille MxD)
-  - Avec ces échantillons de bruit, on utilise le générateur pour prédire M vecteurs de rendements (Xgen, taille MxT), que l'on concatene en lignes à Xreal pour avoir Xrealgen (taille 2MxT)
-  - On définit le vecteur Yrealgen = (1,...,1,0,...,0) (taille 2M), que l'on shuffle afin que le réseau n'apprenne pas de l'ordre des lignes
-  - On entraine le discriminateur
-  - On créé notre matrice de bruit pour tromper le discriminateur (Noise', taille M'xD, avec M'=M ici)
-  - On définit notre vecteur Yfake = (1,...,1) (taille M') prétendant que les échantillons de bruit ci-dessus sont de vraies séries temporelles -> tromper le discriminateur
-  - On entraine le GAN (donc Noise' en entrée du générateur -> sortie Xfake (taille M'xT) qui sera en entrée du discriminateur)
-  - Après avoir bouclé sur chaque batch, nous avons fait une epoch, et aussi surprenant que cela puisse paraitre, on considère que c'est suffisant ici.
+## Construction and training
+- We construct the GAN : 
+  - The generator will have an input of size D = 10 and an output of size T = 200
+  - The discriminator has an input of size T (generator output) and a single sigmoid activation output: in order to discriminate (financial series or not)
+  - Our GAN object will thus have as input that of the generator, and as output that of the discriminator. The goal is that the discriminator does not know how to differentiate the true time series from the false ones, and thus returns a probability of 0.5 once trained, for each vector provided in input.
+
+- Training the GAN for each batch (of size 32 here):
+  - We generate M subsamples of size T of our log returns (Xreal, size MxT)
+  - M samples of noise vectors of dimension D are generated (Noise, size MxD)
+  - With these noise samples, we use the generator to predict M yield vectors (Xgen, size MxT), which we concatenate in rows to Xreal to get Xrealgen (size 2MxT)
+  - We define the vector Yrealgen = (1,...,1,0,...,0) (size 2M), which we shuffle so that the network does not learn from the order of the lines
+  - We train the discriminator
+  - We create our noise matrix to fool the discriminator (Noise', size M'xD, with M'=M here)
+  - Define our vector Yfake = (1,...,1) (size M') pretending that the above noise samples are real time series -> fool the discriminator
+  - We train the GAN (so Noise' as input to the generator -> output Xfake (size M'xT) which will be input to the discriminator)
+  - After looping on each batch, we made an epoch, and as surprising as it may seem, we consider that it is sufficient here.
 
 ## Conclusion/Tests  
-- Pour 3 vecteurs d'entrée, les predictions du discriminateur sont de 0.5, mais on voit que les séries obtenues sont presques identiques. 
-- En fait, en testant avec un vecteur d'entrée (0,...,0) de taille D, la série en sortie est aussi exactement la même. 
-- Le générateur n'a donc appris que du biais.
-- Il est ainsi important de vérifier avec un vecteur d'entrée nul, et d'**avoir l'argument use_bias=False pour le générateur**.
-- Après reconstruction du modèle sans le biais, les séries temporelles sont moins similaires et respectent plus les faits stylisés.
+- For 3 input vectors, the discriminator predictions are 0.5, but we see that the series obtained are almost identical. 
+- In fact, when testing with an input vector (0,...,0) of size D, the output series is also exactly the same. 
+- The generator has therefore only learned from the bias.
+- It is thus important to check with a zero input vector, and to **have the argument use_bias=False for the generator**.
+- After reconstruction of the model without the bias, the time series are less similar and more respectful of the stylized facts.
 
 ## Next step 
-- Rendre l'architecture du générateur et discriminateur bien plus robuste afin d'avoir des séries temporelles d'autant plus différentes l'une de l'autre.
+- Make the architecture of the generator and discriminator much more robust in order to have time series that are more different from each other.
