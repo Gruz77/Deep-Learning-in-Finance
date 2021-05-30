@@ -1,4 +1,4 @@
-<h1 align='center'> Exposant de Hurst : H </h1>
+<h1 align='center'> Hurst Exponent : H </h1>
 
 [<h1 align='center'>![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gruz77/Deep-Learning-in-Finance/blob/main/Hurst_Exponent/Hurst_exponent.ipynb)</h1>
 
