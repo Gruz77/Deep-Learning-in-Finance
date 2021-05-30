@@ -1,21 +1,23 @@
-# Exposant de Hurst : H
+<h1 align='center'> Exposant de Hurst : H </h1>
 
-L'exposant de Hurst est directement lié à notion de mouvement fractionnaire, c'est un indicateur de longue mémoire des séries temporelles. 
-- Pour 0 < H < 0.5, nous sommes dans une trend anti-persistente, le principe de mean-reverting, 
-- Pour H = 0.5, nous avons un mouvement brownien standard (processus de Wiener),
-- Pour 0.5 < H < 1, nous avons une trend persistente (autocorrélation positive à long-terme).
+[<h1 align='center'>![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)</h1>
 
-## Buts du projet 
-- Implémentation du CNN de l'[article de H.Stone, QF (2020)](https://arxiv.org/pdf/1812.05315v3.pdf) pour l'estimation de H
-- Notre but est de trouver une architecture robuste d'un "simple" réseau dense permettant de faire mieux que le CNN précédent pour l'estimation de valeurs de H < 0.5, d'un point de vue MBE, RMSE et MAE.
-- Training Set (CNN et ANN) : 
-  - Pour 10 valeurs de H ([0,1]), génération de 10 000 séries temporelles de mouvement browninen fractionnaire de longueur T = 100 (librairie *fBm*)
-- Test Set :
-  - Pour 100 valeurs de H ([0.01,0.99]), génération de 1000 séries temporelles de longueur T = 100
+The Hurst exponent is directly linked to the notion of fractional movement, it is an indicator of long memory of time series. 
+- For 0 < H < 0.5, we are in an anti-persistent trend, the mean-reverting principle, 
+- For H = 0.5, we have a standard Brownian motion (Wiener process),
+- For 0.5 < H < 1, we have a persistent trend (positive long-term autocorrelation).
+
+## Project goals 
+- Implementation of the CNN of [H.Stone's paper, QF (2020)](https://arxiv.org/pdf/1812.05315v3.pdf) for the estimation of H
+- Our goal is to find a robust architecture of a "simple" dense network that can do better than the previous CNN for estimating values of H < 0.5, from an MBE, RMSE and MAE point of view.
+- Training Set (CNN and ANN): 
+  - For 10 values of H ([0,1]), generation of 10,000 fractional Browninen motion time series of length T = 100 (library *fBm*)
+- Test Set:
+  - For 100 values of H ([0.01,0.99]), generation of 1000 time series of length T = 100
 
 
-## Conclusion : 
-- Le réseau dense ANN est légèrement meilleur que le CNN pour l'estimation de H < 0.4. Cela est suffisant pour sauvegarder le modèle ANN pour une utilisation ultérieure (recherche récente démontrant que le coefficient de Hurst pour les séries financières est aux alentours de 0.1 : [Volatility is rough, J.Gatheral, M.Rosenbaum](https://www.tandfonline.com/doi/full/10.1080/14697688.2017.1393551)).
+## Conclusion: 
+- The dense ANN network is slightly better than the CNN for the estimation of H < 0.4. This is sufficient to save the ANN model for future use (recent research showing that the Hurst coefficient for financial series is around 0.1: Volatility is rough, J.Gatheral, M.Rosenbaum](https://www.tandfonline.com/doi/full/10.1080/14697688.2017.1393551)).
 
 ## Next step 
-- Comparer les résultats avec les estimateurs Wavelets via le package *liftLRD* de R (*rpy2* permet d'importer des fonctions R en Python) - Relancer les calculs en local (ram google colab trop faible)
+- Compare the results with the Wavelets estimators via the *liftLRD* package of R (*rpy2* allows to import R functions in Python) - Relaunch the calculations locally (google colab ram too low)
