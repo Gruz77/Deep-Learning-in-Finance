@@ -1,6 +1,6 @@
 <h1 align='center'> Call & Put Prediction </h1>
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb)
+[<h1 align='center'>![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Gruz77/Deep-Learning-in-Finance/blob/main/Call_Put_Prediction/Call_Put_prediction.ipynb)</h1>
 
 - Project goals:
   - Our goal here is to predict the market data price of options (mid_option rescaled by the mid of the underlying) using Deep Learning
