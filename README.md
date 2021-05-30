@@ -2,7 +2,7 @@
 
 <h1 align='center'><img src="img/opening.jpeg" width="500"> </h1>
 
-Ce repo contient quelques applications des réseaux de neurones à la finance, telles que :
-- ANNs et CNNs pour l'exposant de Hurst : [lien](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/Hurst_Exponent)
-- Les GANs pour la génération de séries temporelles : [lien](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/GAN)
-- LSTMs pour la prédiction de volatilité [lien](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/Volatility_Prediction)
+This repo contains some applications of neural networks to finance, such as :
+- [ANNs and CNNs for Hurst exponent](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/Hurst_Exponent)
+- [GANs for time series generation](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/GAN)
+- [LSTMs for volatility prediction](https://github.com/Gruz77/Deep-Learning-in-Finance/tree/main/Volatility_Prediction)
