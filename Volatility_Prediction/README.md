@@ -37,7 +37,7 @@ Data: .parquet file of variance series from the Oxford-Man Institute for differe
   - The rough volatility model is an excellent model and we can see even graphically that it has a predictive power far exceeding those of the LSTMs networks.
   - At the LSTM level: 
     Here is a screenshot representing the comparison: 
-    <img src="Volatility_Prediction/img/comparison_pred_vol.png" width="1000"> 
+    <img src="img/comparison_pred_vol.png" width="1000"> 
     
   - Unsurprisingly the rough volatility model is the best model from a prediction point of view. 
 
