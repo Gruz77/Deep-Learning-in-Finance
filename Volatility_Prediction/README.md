@@ -47,7 +47,3 @@ Data: .parquet file of variance series from the Oxford-Man Institute for differe
     - adding the third Friday of the month boolean does not add any predictive power.
 
   - We therefore verify that using deep learning with the help of models is one of the best approaches.
-
-
-## Next steps
-  - Optimise the hyperparameters (with a GridSearch for example)
